@@ -25,11 +25,15 @@ function main()
 	    local outpath="$MARKED_ORIGIN"
 	fi
 
-
 	local desiredextension="${1:-pdf}"  # Change this to change the output format
 	local outputfile="$outpath$filebasename.$desiredextension"
 
-	/usr/local/bin/pandoc -f markdown "$MARKED_PATH" -o "$outputfile" --pdf-engine=/Library/TeX/texbin/xelatex
+	if [ "$desiredextension" == "pdf" ]
+	then
+	    local metadata="--metadata-file=/Users/connor/Development/marked_pandoc/template.yml"
+	fi
+
+	/Users/connor/bin/pandoc -f markdown "$MARKED_PATH" -o "$outputfile" --pdf-engine=/Library/TeX/texbin/xelatex $metadata
 
 	# Returning "NOCUSTOM" tells Marked to skip the processor and resume rendering
 	echo "NOCUSTOM"
