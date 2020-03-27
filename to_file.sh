@@ -1,5 +1,11 @@
 #!/bin/bash
-
+set -euo pipefail
+IFS=$'\n\t'
+#
+# Recall the two latter commands exit if any command returns nonzero,
+# if an undefined variable is called, or if a command mid-pipeline fails,
+# and iterates over elements separated by just newlines and tabs, not spaces.
+#
 # A custom preprocessor for Marked 2 that will export a file to docx or LaTeX pdf
 # after Marked does initial inclusion and processing, then cancel the processor and have
 # Marked resume processing.
