@@ -22,10 +22,7 @@ function main()
 
 	# If the file is in the Caches directory or is from the clipboard, put the result
 	# on the desktop. Otherwise, put it where the source file is.
-	if [ "$MARKED_ORIGIN" == "$HOME/Library/Caches/Marked 2/Watchers/" ]
-	then
-	    local outpath="$HOME/Desktop/"
-	elif [ "$filebasename" == "Clipboard Preview" ]
+	if [ "$MARKED_ORIGIN" == "$HOME/Library/Caches/Marked 2/Watchers/" ] || [ "$filebasename" == "Clipboard Preview" ]
 	then
 	    local outpath="$HOME/Desktop/"
 	else
@@ -38,9 +35,20 @@ function main()
 	if [ "$desiredextension" == "pdf" ]
 	then
 	    local metadata="--metadata-file=$HOME/Development/marked_pandoc/template.yml"
+	else
+	    local metadata=""
 	fi
 
-	$HOME/bin/pandoc -f markdown "$MARKED_PATH" -o "$outputfile" --pdf-engine=/Library/TeX/texbin/xelatex $metadata
+    shopt -s nocasematch
+	if [[ "${2:-false}" == "true" || "${2:-false}" == "yes" ]]
+	then
+	    local adddate="--lua-filter=$HOME/Development/marked_pandoc/add_date.lua"
+	else
+	    local adddate=""
+	fi
+	shopt -u nocasematch
+
+	$HOME/bin/pandoc -f markdown "$MARKED_PATH" -o "$outputfile" --pdf-engine=/Library/TeX/texbin/xelatex $adddate $metadata
 
 	# Returning "NOCUSTOM" tells Marked to skip the processor and resume rendering
 	echo "NOCUSTOM"
