@@ -15,3 +15,22 @@ Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/Library/TeX/texbin/", sep = ":"))
 rmarkdown::render(Sys.getenv("MARKED_PATH"), quiet = TRUE)
 
 cat("NOCUSTOM")  # to return to the main processor
+
+## For reference: the arguments passed to pandoc when used as a custom processor:
+
+# +RTS -K512m -RTS --mathml --from commonmark_x -t html5 --section-divs --standalone
+# --citeproc -M document-css=false --resource-path=.:$MARKED_ORIGIN
+
+# +RTS -K512m -RTS protects against some security vulnerabilities
+#
+# --section-divs adds <section>s or \section{}s when writing headers
+#
+# --mathml is used so I can copy-paste the resulting HTML into Canvas/bCourses
+#
+# -M document-css=false disables the default pandoc CSS so Marked can inject its own
+#
+# --resource-path=.:$MARKED_ORIGIN looks for files (like images, .bib files, etc) in
+# the directory where the source file is, since pandoc is called in a clean shell
+# and the working directory is not the directory where the source file is.
+#
+# The rest are copied from how render() calls pandoc.
