@@ -1,9 +1,5 @@
-# Generate Documents from Marked via Pandoc
+# Generate (R)Markdown Documents from Marked via Pandoc
 
-shell script preprocessor for [Marked.app](http://marked2app.com) to export the previewed markdown document to an output file via [pandoc](http://pandoc.org). Defaults to exporting a PDF, other formats can be specified by defining the desired file extension via [MultiMarkdown Metadata](https://marked2app.com/help/Per-Document_Settings.html):
+R script preprocessor for [Marked.app](http://marked2app.com) to export the previewed markdown document to an output file via Rmarkdown and [pandoc](http://pandoc.org). Specify the output format using Rmarkdown YAML Header.
 
-```
-Custom Preprocessor: [true, "docx"]
-```
-
-If the previewed content is from the clipboard or saved in `~/Library/Caches/Marked 2/Watchers/`, the output file is saved to the Desktop. Otherwise, the output is saved in the same directory as the source file.
+The output is saved in the same directory as the source file.

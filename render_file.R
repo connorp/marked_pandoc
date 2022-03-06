@@ -9,8 +9,9 @@ setwd(Sys.getenv("MARKED_ORIGIN"))
 
 # Add pandoc and LaTeX to PATH so render() can find them.
 # Note these hardcoded paths might need to be changed for different systems
-Sys.setenv(RSTUDIO_PANDOC = "/Applications/RStudio.app/Contents/MacOS/pandoc/")
-Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/Library/TeX/texbin/", sep = ":"))
+Sys.setenv(RSTUDIO_PANDOC = "/Applications/RStudio.app/Contents/MacOS/quarto/bin")
+Sys.setenv(PATH = paste(Sys.getenv("PATH"), "/Library/TeX/texbin/",
+						"/opt/homebrew/bin/", sep = ":"))
 
 rmarkdown::render(Sys.getenv("MARKED_PATH"), quiet = TRUE)
 
@@ -18,8 +19,7 @@ cat("NOCUSTOM")  # to return to the main processor
 
 ## For reference: the arguments passed to pandoc when used as a custom processor:
 
-# +RTS -K512m -RTS --mathml --from commonmark_x -t html5 --section-divs --standalone
-# --citeproc -M document-css=false --resource-path=.:$MARKED_ORIGIN
+# +RTS -K512m -RTS --mathml --from commonmark_x -t html5 --section-divs --standalone --citeproc -M document-css=false --resource-path=.:$MARKED_ORIGIN
 
 # +RTS -K512m -RTS protects against some security vulnerabilities
 #
