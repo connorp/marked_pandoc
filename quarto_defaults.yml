@@ -1,0 +1,23 @@
+project:
+  execute-dir: project
+
+date-format: MMM DD, YYYY HH:mm:ss z
+lang: en
+
+cite-method: citeproc
+bibliography: ["/Users/connor/Zotero/My_Library.json", "/Users/connor/Zotero/atlas-connor.json"]
+biblio-title: References
+reference-section-title: References
+biblio-style: authoryear
+biblatexoptions: "isbn=false, url=false"
+link-citations: true
+
+format:
+  pdf:
+    df-print: kable
+  docx:
+    df-print: kable
+  html:
+    df-print: kable
+    anchor-sections: true
+
