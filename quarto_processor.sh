@@ -7,5 +7,6 @@ IFS=$'\n\t'
 
 export PATH="$PATH:/Applications/RStudio.app/Contents/MacOS/pandoc:/opt/R/arm64:/opt/homebrew/opt/llvm/bin:/Library/TeX/texbin/:/opt/homebrew/bin/"
 
-# This works, but it still uses Quarto's CSS, rather than forgoing CSS
-/usr/local/bin/quarto render $MARKED_PATH --to html --execute-params ~/Development/marked_pandoc/quarto_defaults.yml --output -
+/usr/local/bin/quarto render $MARKED_PATH --to html --output -
+
+# --metadata-file=/Users/connor/Development/marked_pandoc/processor_defaults.yml

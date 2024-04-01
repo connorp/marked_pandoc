@@ -1,0 +1,6 @@
+format:
+  html:
+    theme: none
+
+metadata-files:
+  - /Users/connor/Development/marked_pandoc/quarto_defaults.yml
